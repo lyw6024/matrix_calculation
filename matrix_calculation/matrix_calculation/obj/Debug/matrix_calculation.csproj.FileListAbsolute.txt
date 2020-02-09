@@ -1,0 +1,15 @@
+D:\project\code\202002\matrix_calculation\matrix_calculation\matrix_calculation\bin\Debug\matrix_calculation.exe.config
+D:\project\code\202002\matrix_calculation\matrix_calculation\matrix_calculation\bin\Debug\matrix_calculation.exe
+D:\project\code\202002\matrix_calculation\matrix_calculation\matrix_calculation\bin\Debug\matrix_calculation.pdb
+D:\project\code\202002\matrix_calculation\matrix_calculation\matrix_calculation\obj\Debug\matrix_calculation.csprojAssemblyReference.cache
+D:\project\code\202002\matrix_calculation\matrix_calculation\matrix_calculation\obj\Debug\MainWindow.g.cs
+D:\project\code\202002\matrix_calculation\matrix_calculation\matrix_calculation\obj\Debug\App.g.cs
+D:\project\code\202002\matrix_calculation\matrix_calculation\matrix_calculation\obj\Debug\matrix_calculation_MarkupCompile.cache
+D:\project\code\202002\matrix_calculation\matrix_calculation\matrix_calculation\obj\Debug\matrix_calculation_MarkupCompile.lref
+D:\project\code\202002\matrix_calculation\matrix_calculation\matrix_calculation\obj\Debug\MainWindow.baml
+D:\project\code\202002\matrix_calculation\matrix_calculation\matrix_calculation\obj\Debug\matrix_calculation.g.resources
+D:\project\code\202002\matrix_calculation\matrix_calculation\matrix_calculation\obj\Debug\matrix_calculation.Properties.Resources.resources
+D:\project\code\202002\matrix_calculation\matrix_calculation\matrix_calculation\obj\Debug\matrix_calculation.csproj.GenerateResource.cache
+D:\project\code\202002\matrix_calculation\matrix_calculation\matrix_calculation\obj\Debug\matrix_calculation.csproj.CoreCompileInputs.cache
+D:\project\code\202002\matrix_calculation\matrix_calculation\matrix_calculation\obj\Debug\matrix_calculation.exe
+D:\project\code\202002\matrix_calculation\matrix_calculation\matrix_calculation\obj\Debug\matrix_calculation.pdb
