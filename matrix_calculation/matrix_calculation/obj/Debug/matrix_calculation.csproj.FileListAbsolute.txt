@@ -13,3 +13,5 @@ D:\project\code\202002\matrix_calculation\matrix_calculation\matrix_calculation\
 D:\project\code\202002\matrix_calculation\matrix_calculation\matrix_calculation\obj\Debug\matrix_calculation.csproj.CoreCompileInputs.cache
 D:\project\code\202002\matrix_calculation\matrix_calculation\matrix_calculation\obj\Debug\matrix_calculation.exe
 D:\project\code\202002\matrix_calculation\matrix_calculation\matrix_calculation\obj\Debug\matrix_calculation.pdb
+D:\project\code\202002\matrix_calculation\matrix_calculation\matrix_calculation\bin\Debug\WpfMath.dll
+D:\project\code\202002\matrix_calculation\matrix_calculation\matrix_calculation\obj\Debug\matrix_calculation.csproj.CopyComplete

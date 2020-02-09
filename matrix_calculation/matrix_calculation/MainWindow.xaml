@@ -12,18 +12,20 @@
             <ColumnDefinition Width="547*"/>
         </Grid.ColumnDefinitions>
         <TabControl HorizontalAlignment="Left" Height="554" Margin="10,10,0,0" VerticalAlignment="Top" Width="907" Grid.ColumnSpan="2">
-            <TabItem Header="TabItem">
-                <Grid Background="#FFE5E5E5">
-                    <RichTextBox HorizontalAlignment="Left" Height="151" Margin="10,10,0,0" VerticalAlignment="Top" Width="190">
-                        <FlowDocument>
-                            <Paragraph>
-                                <Run Text="RichTextBox"/>
-                            </Paragraph>
-                        </FlowDocument>
-                    </RichTextBox>
+            <TabItem Header="线性方程组">
+                <Grid Background="#FFE5E5E5" Margin="0,2,0,-1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="91*"/>
+                        <ColumnDefinition Width="9*"/>
+                        <ColumnDefinition Width="801*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox x:Name="Mat_Text" HorizontalAlignment="Left" Height="131" Margin="10,19,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="173" AcceptsReturn="True" AcceptsTab="True" KeyUp="Mat_Text_KeyUp" Grid.ColumnSpan="3"/>
+                    <TextBox x:Name="Vect_Text" HorizontalAlignment="Left" Height="131" Margin="110,19,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="60" AcceptsReturn="True" AcceptsTab="True" KeyUp="Vect_Text_KeyUp" Grid.Column="2"/>
+                    <Image x:Name="imgSrc" HorizontalAlignment="Left" Height="248" Margin="24,192,0,0" VerticalAlignment="Top" Width="572" Grid.ColumnSpan="3"/>
+
                 </Grid>
             </TabItem>
-            <TabItem Header="TabItem">
+            <TabItem Header="行列式">
                 <Grid Background="#FFE5E5E5"/>
             </TabItem>
         </TabControl>
