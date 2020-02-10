@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace matrix_calculation
 {
-    class rationalNumber
+    class RationalNumber
     {
         private int _num, _den;
         private int gcd(int x,int y)
@@ -21,17 +21,17 @@ namespace matrix_calculation
             }
         }
 
-        public rationalNumber()
+        public RationalNumber()
         {
             _num = 0;
             _den = 1;
         }
-        public rationalNumber(int x)
+        public RationalNumber(int x)
         {
             _num = x;
             _den = 1;
         }
-        public rationalNumber(int nn,int dd)
+        public RationalNumber(int nn,int dd)
         {
             int sign = 1;
             int g = gcd(Math.Abs(nn), Math.Abs(dd));
@@ -64,21 +64,55 @@ namespace matrix_calculation
         {
             return String.Format("{0}/{1}", _num, _den);
         }
-        public static rationalNumber operator+(rationalNumber self,rationalNumber o)
+        public static RationalNumber operator+(RationalNumber self,RationalNumber o)
         {
-            return new rationalNumber(self._num * o._den + self._den * o._num, self._den * o._den);
+            return new RationalNumber(self._num * o._den + self._den * o._num, self._den * o._den);
         }
-        public static rationalNumber operator -(rationalNumber self, rationalNumber o)
+        public static RationalNumber operator -(RationalNumber self, RationalNumber o)
         {
-            return new rationalNumber(self._num * o._den - self._den * o._num, self._den * o._den);
+            return new RationalNumber(self._num * o._den - self._den * o._num, self._den * o._den);
         }
-        public static rationalNumber operator *(rationalNumber self, rationalNumber o)
+        public static RationalNumber operator *(RationalNumber self, RationalNumber o)
         {
-            return new rationalNumber(self._num * o._num, self._den * o._den);
+            return new RationalNumber(self._num * o._num, self._den * o._den);
         }
-        public static rationalNumber operator /(rationalNumber self, rationalNumber o)
+        public static RationalNumber operator /(RationalNumber self, RationalNumber o)
         {
-            return new rationalNumber(self._num * o._den, self._den * o._num);
+            return new RationalNumber(self._num * o._den, self._den * o._num);
+        }
+        public static RationalNumber operator /( int o, RationalNumber self)
+        {
+            return new RationalNumber( self._den * o, self._num);
+        }
+        public static RationalNumber operator /(RationalNumber self, int o)
+        {
+            return new RationalNumber(self._num , self._den *o );
+        }
+        public static bool operator ==(RationalNumber self, RationalNumber o)
+        {
+            return self._num == o._num && self._den == o._den;
+        }
+        public static bool operator !=(RationalNumber self, RationalNumber o)
+        {
+            return !(self._num == o._num && self._den == o._den);
+        }
+
+        public static bool operator ==(RationalNumber self, int o)
+        {
+            return self._den == 1 && self._num == o;
+        }
+        public static bool operator !=(RationalNumber self, int o)
+        {
+            return (self._den != 1  || (self._den ==1 && self._num != o));
+        }
+
+        public override bool Equals(Object o)
+        {
+            return this is RationalNumber &&  this == (RationalNumber)o;
+        }
+        public override int GetHashCode()
+        {
+            return Convert.ToInt32(String.Format("{0}{1}",_num , _den));
         }
     }
 }

@@ -23,63 +23,79 @@ namespace matrix_calculation
     /// </summary>
     public partial class MainWindow : Window
     {
-        List<rationalNumber> numList = new List<rationalNumber>();
-        List<rationalNumber> vectList = new List<rationalNumber>();
+        List<RationalNumber> numList = new List<RationalNumber>();
+        List<RationalNumber> vectList = new List<RationalNumber>();
         TexFormulaParser parser = new TexFormulaParser();
         string left_LaTeX, right_LaTeX;
         public MainWindow()
         {
             InitializeComponent();
+            Mat_Text.Text = "1 1 1\n0 1 1\n 0 0 1";
+            Vect_Text.Text = "3\n2\n1";
         }
        
         private void Mat_Text_KeyUp(object sender, KeyEventArgs e)
         {
+            Res.Source=null;
+            int N = 1;
             left_LaTeX= "";
             try
             {
-                var lines = Mat_Text.Text.Split('\n');
 
-                left_LaTeX += @"\pmatrix{";
-                for (int k = 0; k < lines.Length; k++)
+                var lines = System.Text.RegularExpressions.Regex.Split(Mat_Text.Text.Trim(), @"\s+");
+                numList.Clear();
+                foreach (var it in lines)
                 {
-                    if (k > 0)
+                    RationalNumber a;
+                    if (it.Contains('/'))
                     {
-                        left_LaTeX += @"\\";
+                        var rat = it.Split('/');
+                        a = new RationalNumber(Convert.ToInt32(rat[0]), Convert.ToInt32(rat[1]));
                     }
-                    var msg = lines[k].Split(' ');
-                    for (int i = 0; i < msg.Length; i++)
+                    else
                     {
-                        if (i > 0)
-                        {
-                            left_LaTeX += " & ";
-                        }
-                        rationalNumber a;
-                        if (msg[i].Contains('/'))
-                        {
-                            var rat = msg[i].Split('/');
-                            a = new rationalNumber(Convert.ToInt32(rat[0]), Convert.ToInt32(rat[1]));
-                        }
-                        else
-                        {
-                            a = new rationalNumber(Convert.ToInt32(msg[i]));
-                        }
-                        numList.Add(a);
-                        left_LaTeX += a.ToLaTeX();
+                        a = new RationalNumber(Convert.ToInt32(it));
                     }
-
+                    numList.Add(a);
+                    
                 }
 
-                left_LaTeX += "}";
-            
-                var formula = parser.Parse(left_LaTeX+"X="+right_LaTeX);
-                var pngBytes = formula.RenderToPng(20.0, 0.0, 0.0, "Arial");
-                MemoryStream ms = new MemoryStream(pngBytes, true);
+                while(numList.Count>=(N+1)*(N+1))
+                {
+                    N += 1;
+                }
+                if (numList.Count == N * N)
+                {
+                    left_LaTeX += @"\pmatrix{";
+                    int idx = 0;
+                    foreach (var it in numList)
+                    {
+                        if (idx > 0)
+                        {
+                            if (idx % N == 0)
+                            {
+                                left_LaTeX += @"\\";
+                            }
+                            else
+                            {
+                                left_LaTeX += "&";
+                            }
+                        }
+                        left_LaTeX += it.ToLaTeX();
+                        idx++;
+                    }
+                    left_LaTeX += "}";
 
-                BitmapImage p1 = new BitmapImage();
-                p1.BeginInit();
-                p1.StreamSource = ms;
-                p1.EndInit();
-                imgSrc.Source = p1;
+                    var formula = parser.Parse(left_LaTeX + "X=" + right_LaTeX);
+                    var pngBytes = formula.RenderToPng(20.0, 0.0, 0.0, "Arial");
+                    MemoryStream ms = new MemoryStream(pngBytes, true);
+
+                    BitmapImage p1 = new BitmapImage();
+                    p1.BeginInit();
+                    p1.StreamSource = ms;
+                    p1.EndInit();
+                    imgSrc.Source = p1;
+                }
             }
             catch
             {
@@ -87,31 +103,41 @@ namespace matrix_calculation
             }
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            string latex = matrixAlgo.linearEquation(ref numList, ref vectList);
+            var formula = parser.Parse(latex);
+            var pngBytes = formula.RenderToPng(20.0, 0.0, 0.0, "Arial");
+            MemoryStream ms = new MemoryStream(pngBytes, true);
+
+            BitmapImage p1 = new BitmapImage();
+            p1.BeginInit();
+            p1.StreamSource = ms;
+            p1.EndInit();
+            Res.Source = p1;
+        }
+
         private void Vect_Text_KeyUp(object sender, KeyEventArgs e)
         {
-
-
+            Res.Source = null;
             try
             {
                 vectList.Clear();
-                var lines = Vect_Text.Text.Split('\n');
-                foreach (var line in lines)
+                var lines = System.Text.RegularExpressions.Regex.Split(Vect_Text.Text.Trim(), @"\s+");
+                foreach (var it in lines)
                 {
-                    var msg = line.Split(' ');
-                    foreach(var it in msg)
+                    RationalNumber a;
+                    if (it.Contains('/'))
                     {
-                        rationalNumber a;
-                        if (it.Contains('/'))
-                        {
-                            var rat = it.Split('/');
-                            a = new rationalNumber(Convert.ToInt32(rat[0]), Convert.ToInt32(rat[1]));
-                        }
-                        else
-                        {
-                            a = new rationalNumber(Convert.ToInt32(it));
-                        }
-                        vectList.Add(a);
+                        var rat = it.Split('/');
+                        a = new RationalNumber(Convert.ToInt32(rat[0]), Convert.ToInt32(rat[1]));
                     }
+                    else
+                    {
+                        a = new RationalNumber(Convert.ToInt32(it));
+                    }
+                    vectList.Add(a);
+                    
                 }
                 right_LaTeX = @"\pmatrix{";
                 for (int i=0;i<vectList.Count;i++)
